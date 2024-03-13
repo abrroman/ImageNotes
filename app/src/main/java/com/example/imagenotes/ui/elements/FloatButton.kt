@@ -2,15 +2,11 @@ package com.example.imagenotes.ui.elements
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -22,8 +18,8 @@ import com.example.imagenotes.ui.themes.notePrimary
 import com.example.imagenotes.ui.themes.noteSecondary
 
 @Composable
-fun floatButton(){
-    IconButton(onClick={})
+fun floatButton(addNoteClick: () -> Unit) {
+    IconButton(onClick={addNoteClick()})
     {
         Surface(
             shadowElevation = 9.dp, // play with the elevation values

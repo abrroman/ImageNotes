@@ -9,27 +9,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.IconButton
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.ArrowBack
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import com.example.imagenotes.events.NoteEvent
 import com.example.imagenotes.ui.themes.notePrimary
 import com.example.imagenotes.ui.themes.noteSecondary
 
 @Composable
-fun topAppBar(){
+fun topNoteBar(onEvent: (NoteEvent) -> Unit){
     Surface(
         shadowElevation = 9.dp,
         shape = RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)
@@ -38,13 +38,17 @@ fun topAppBar(){
             modifier = Modifier.clip(shape = RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)).fillMaxWidth().height(50.dp)
                 .background(notePrimary).padding(horizontal = 15.dp))
         {
-            Text("ImageNotes", fontWeight = FontWeight.Bold, fontSize = 25.sp, color = noteSecondary)
-            IconButton(onClick={}, modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 15.dp))
+            IconButton(onClick={onEvent(NoteEvent.NavigateBack)}, modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 15.dp))
             {
-                Icon(imageVector = Icons.Filled.Search,
-                    contentDescription = "Info Icon", tint = noteSecondary, modifier = Modifier.size(30.dp))
+                Icon(imageVector = Icons.Rounded.ArrowBack,
+                    contentDescription = "Back Icon", tint = noteSecondary, modifier = Modifier.size(30.dp))
+            }
+            Text("ImageNotes", fontWeight = FontWeight.Bold, fontSize = 25.sp, color = noteSecondary)
+            IconButton(onClick={onEvent(NoteEvent.DeleteNote)}, modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 15.dp))
+            {
+                Icon(imageVector = Icons.Rounded.Delete,
+                    contentDescription = "Delete Icon", tint = noteSecondary, modifier = Modifier.size(30.dp))
             }
         }
     }
 }
-

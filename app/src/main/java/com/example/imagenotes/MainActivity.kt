@@ -16,7 +16,7 @@ import com.example.imagenotes.events.Route
 import com.example.imagenotes.events.UiEvent
 import com.example.imagenotes.models.NoteListViewModel
 import com.example.imagenotes.models.NoteViewModel
-import com.example.imagenotes.ui.screens.NoteScreen
+import com.example.imagenotes.ui.note.NoteScreen
 import com.example.imagenotes.ui.screens.mainScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
                                     it.id.toString()
                                 )
                             )
-                        }
+                        },
+                        addNoteClick = {navController.navigate(Route.note)}
                     )
                 }
 

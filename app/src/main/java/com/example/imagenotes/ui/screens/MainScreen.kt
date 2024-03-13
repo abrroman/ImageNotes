@@ -2,8 +2,6 @@ package com.example.imagenotes.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.FabPosition
@@ -22,24 +20,19 @@ import com.example.imagenotes.ui.themes.noteBackground
 
 @Composable
 fun mainScreen(noteList: List<Note>,
-               onNoteClick: (Note) -> Unit)
+               onNoteClick: (Note) -> Unit,
+               addNoteClick: () -> Unit)
 {
     Scaffold(
         bottomBar = {},
         topBar = { topAppBar() },
-        floatingActionButton = { floatButton() },
+        floatingActionButton = { floatButton(addNoteClick) },
         floatingActionButtonPosition = FabPosition.End,
         containerColor = noteBackground
     ) {  padding ->
         LazyColumn(
             contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 15.dp + padding.calculateTopPadding(), bottom = 15.dp + padding.calculateBottomPadding())
         ) {
-            item{
-                Text(
-                    text = "Notes",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
             items(noteList) { note ->
                 ListItem(
                     headlineContent = {
