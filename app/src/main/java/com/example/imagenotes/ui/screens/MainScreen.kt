@@ -1,20 +1,22 @@
 package com.example.imagenotes.ui.screens
 
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.FabPosition
-import androidx.compose.material3.ListItem
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.imagenotes.data.Note
 import com.example.imagenotes.ui.elements.floatButton
+import com.example.imagenotes.ui.elements.noteCell
 import com.example.imagenotes.ui.elements.topAppBar
 import com.example.imagenotes.ui.themes.noteBackground
 
@@ -29,28 +31,16 @@ fun mainScreen(noteList: List<Note>,
         floatingActionButton = { floatButton(addNoteClick) },
         floatingActionButtonPosition = FabPosition.End,
         containerColor = noteBackground
-    ) {  padding ->
-        LazyColumn(
-            contentPadding = PaddingValues(start = 20.dp, end = 20.dp, top = 15.dp + padding.calculateTopPadding(), bottom = 15.dp + padding.calculateBottomPadding())
-        ) {
-            items(noteList) { note ->
-                ListItem(
-                    headlineContent = {
-                        Text(
-                            text = note.title,
-                            style = MaterialTheme.typography.titleMedium
-                        )
-                    },
-                    supportingContent = {
-                        Text(
-                            text = note.content,
-                            maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                    },
-                    modifier = Modifier.clickable(onClick= {onNoteClick(note)})
-                )
+    ) { padding ->
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(horizontal = 15.dp, vertical = padding.calculateTopPadding()),
+                horizontalArrangement = Arrangement.Center,
+                verticalArrangement = Arrangement.spacedBy(15.dp)
+            ) {
+                items(noteList) { item ->
+                    noteCell(item)
+                }
             }
-        }
     }
 }
