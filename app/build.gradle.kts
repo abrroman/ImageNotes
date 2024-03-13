@@ -47,6 +47,12 @@ android {
 }
 
 dependencies {
+    val lifecycleVersion = "2.6.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation("com.google.dagger:hilt-android:2.48.1")
     ksp ("com.google.dagger:dagger-compiler:2.48") // Dagger compiler
     ksp ("com.google.dagger:hilt-compiler:2.48")   // Hilt compiler
