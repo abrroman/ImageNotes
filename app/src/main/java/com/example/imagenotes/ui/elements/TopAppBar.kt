@@ -30,10 +30,6 @@ import com.example.imagenotes.ui.themes.noteSecondary
 
 @Composable
 fun topAppBar(){
-    Surface(
-        shadowElevation = 9.dp,
-        shape = RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)
-    ) {
         Row(horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Top,
             modifier = Modifier.clip(shape = RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)).fillMaxWidth().height(50.dp)
                 .background(notePrimary).padding(horizontal = 15.dp))
@@ -45,6 +41,5 @@ fun topAppBar(){
                     contentDescription = "Info Icon", tint = noteSecondary, modifier = Modifier.size(30.dp))
             }
         }
-    }
 }
 
